@@ -28,9 +28,9 @@ export default {
   },
   setup() {
     const images = [
-      "https://via.placeholder.com/600x300?text=Slide+1",
-      "https://via.placeholder.com/600x300?text=Slide+2",
-      "https://via.placeholder.com/600x300?text=Slide+3",
+      "https://picsum.photos/600/300?random=1",
+      "https://picsum.photos/600/300?random=2",
+      "https://picsum.photos/600/300?random=3",
     ];
 
     return {
