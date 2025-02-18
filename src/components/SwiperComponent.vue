@@ -1,44 +1,55 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true,
-  },
-})
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+  <div class="swiper-container">
+    <swiper
+      :modules="[Pagination, Navigation]"
+      :slides-per-view="1"
+      :space-between="10"
+      :pagination="{ clickable: true }"
+      :navigation="true"
+    >
+      <swiper-slide v-for="(image, index) in images" :key="index">
+        <img :src="image" alt="Slide Image" />
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
+<script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Pagination, Navigation } from 'swiper/modules';
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    const images = [
+      "https://via.placeholder.com/600x300?text=Slide+1",
+      "https://via.placeholder.com/600x300?text=Slide+2",
+      "https://via.placeholder.com/600x300?text=Slide+3",
+    ];
+
+    return {
+      images,
+      Pagination,
+      Navigation,
+    };
+  },
+};
+</script>
+
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
+.swiper-container {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
 }
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+img {
+  width: 100%;
+  border-radius: 10px;
 }
 </style>
